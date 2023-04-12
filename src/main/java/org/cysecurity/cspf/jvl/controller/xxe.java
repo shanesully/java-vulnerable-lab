@@ -43,6 +43,10 @@ public class xxe extends HttpServlet {
         {
           InputStream xml=request.getInputStream();
           DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+          factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+          factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
+          factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+
           DocumentBuilder builder = factory.newDocumentBuilder();
           InputSource is = new InputSource(xml); 	
           Document doc = builder.parse(is);
